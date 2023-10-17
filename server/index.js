@@ -5,7 +5,7 @@ import TodoModel from './models/todo.js';
 import UserModel from './models/user.js';
 
 const app = express();
-const port = 8080;
+// const port = 8080;
 
 // Middleware
 app.use(express.json());
@@ -114,9 +114,12 @@ app.put('/todos/:id', async (req, res) => {
 
 const startServer = async () => {
     await connectToDB();
-    app.listen(port, () => {
-        console.log(`Server is listening on port ${port}`);
+    if(process.env.PORT)
+    app.listen(process.env.PORT, () => {
+        console.log(`Server is listening on port ${process.env.PORT}`);
     });
 }
 
 startServer();
+
+export default app;
