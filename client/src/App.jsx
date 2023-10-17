@@ -5,12 +5,13 @@ import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')) || null);
+  const [profile, setProfile] = useState(JSON.parse(sessionStorage.getItem('profile')) || null);
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
       setUser(codeResponse);
+      sessionStorage.setItem('user', JSON.stringify(codeResponse));
     },
     onError: (error) => console.log('Login Failed:', error)
   });
@@ -26,7 +27,7 @@ function App() {
             }
           });
           try {
-            await axios.post('http://localhost:8080/user', {
+            await axios.post('https://mern-todo-server-sohaib.vercel.app/user', {
               email: response.data.email,
             })
           } catch (error) {
@@ -34,6 +35,7 @@ function App() {
           }
 
           setProfile(response.data);
+          sessionStorage.setItem('profile', JSON.stringify(response.data));
         } catch (error) {
           console.log(error);
         }
@@ -44,6 +46,9 @@ function App() {
 
   const logout = () => {
     googleLogout();
+    
+    sessionStorage.removeItem('profile');
+    sessionStorage.removeItem('user');
     setProfile(null);
     setUser(null);
   };

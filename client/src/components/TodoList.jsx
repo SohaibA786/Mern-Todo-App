@@ -13,7 +13,7 @@ function TodoList({ profile }) {
   const getTodos = async () => {
     if (!profile) return setTodos([]);
     try {
-      const response = await axios.get('http://localhost:8080/todos', {
+      const response = await axios.get('https://mern-todo-server-sohaib.vercel.app/todos', {
         params: {
           email: profile.email,
         }
@@ -28,7 +28,7 @@ function TodoList({ profile }) {
   const addTodo = async todo => {
     if (!todo.id && todo.text) {
       try {
-        const response = await axios.post('http://localhost:8080/todos', {
+        const response = await axios.post('https://mern-todo-server-sohaib.vercel.app/todos', {
           email: profile.email,
           todo: todo.text.trim(),
         })
@@ -45,7 +45,7 @@ function TodoList({ profile }) {
   const updateTodo = async ({ id, text }) => {
     try {
 
-      await axios.put(`http://localhost:8080/todos/${id}`, {
+      await axios.put(`https://mern-todo-server-sohaib.vercel.app/todos/${id}`, {
         email: profile.email,
         todo: text,
       })
@@ -63,7 +63,7 @@ function TodoList({ profile }) {
 
   const removeTodo = async id => {
     try {
-      await axios.delete(`http://localhost:8080/todos/${id}`, {
+      await axios.delete(`https://mern-todo-server-sohaib.vercel.app/todos/${id}`, {
         params: {
           email: profile.email,
         }
@@ -79,7 +79,7 @@ function TodoList({ profile }) {
   };
   const completeTodo = async (id) => {
     try {
-      await axios.patch(`http://localhost:8080/todos/${id}`, {
+      await axios.patch(`https://mern-todo-server-sohaib.vercel.app/todos/${id}`, {
         email: profile.email,
       })
       let temp = [...todos];
