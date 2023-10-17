@@ -89,6 +89,11 @@ function App() {
         <TodoList profile={profile} />
       </div>
 
+      <footer>
+        <p>Copyright © MERN TODO 2023. All rights reserved.</p>
+        <p>Made with 🤍 by <a target='_blank' href="https://linkedin.com/in/engr-sohaib">Engr. Sohaib</a></p>
+      </footer>
+
     </>
   );
 }

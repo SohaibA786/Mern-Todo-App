@@ -170,3 +170,20 @@ header {
   align-items: center;
   padding: 18px;
 }
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #161a2b;
+  color: white;
+  font-size: 14px;
+  font-weight: 100;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+footer a {
+  color: white;
+}
