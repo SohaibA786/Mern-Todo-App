@@ -11,6 +11,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Test Route
+app.get('/test', (req, res) => {
+    res.status(200).send('maliksohaib.official@gmail.com');
+});
+
+
 // Users //
 // Create User
 app.post('/user', async (req, res) => {
